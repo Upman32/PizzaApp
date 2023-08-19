@@ -17,10 +17,11 @@ import AppHeader from './components/AppHeader.vue'
   display: flex;
   flex-direction: column; 
 
+
 }
 @media(min-width: 900px){
   .info_block_wrapper {
   flex-direction: row; 
 }
-
+}
 </style>
