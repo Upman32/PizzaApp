@@ -1,6 +1,8 @@
 <template>
   <section class="admin_section">
     <header class="admin_section_header">
+    <h3>Add new pizza</h3>
+    </header>
       <form>
   <div class="form_group">
     <label font="">Name</label>
@@ -38,6 +40,5 @@
     </button>
   </div>
  </form>
-    </header>
   </section>
 </template>
