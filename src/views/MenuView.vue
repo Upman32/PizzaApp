@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-// const basket = ref([])
+import useBasket from '@/composables/useBasket'
 
-const basket = ref([])
+const {basket, increaseQuantity, decreaseQuantity, addToBasket, total} = useBasket();
+
 const allPizzas = ref([
 {
   name: 'Margharita',
@@ -22,14 +23,8 @@ const allPizzas = ref([
 }
 ])
 
-function addToBasket(item, option) {
-  basket.value.push({
-    name:  item.name,
-    price: option.price,
-    size: option.size,
-    quantity: '1'
-  })
-}
+
+
 </script>
 <template>
   <div class="menu_wrapper">
@@ -66,16 +61,16 @@ function addToBasket(item, option) {
           <tbody v-for="(item, index) in basket" :key="index">
             <tr>
               <td>
-                <button class="quantity_btn" type="button">&#8722;</button>
+                <button @click="decreaseQuantity(item)" class="quantity_btn" type="button">&#8722;</button>
                 <span>{{item.quantity}}</span>
-                <button class="quantity_btn" type="button">&#43;</button>
+                <button @click="increaseQuantity(item)" class="quantity_btn" type="button">&#43;</button>
               </td>
               <td>{{ item.name }} {{ item.size }}"</td>
               <td>{{ item.price * item.quantity }}</td>
             </tr>
           </tbody>
         </table>
-        <p>Order total: $87</p>
+        <p>Order total: {{ total }}</p>
         <button>Place order</button>
       </div>
     </div>
