@@ -1,9 +1,13 @@
+import { addDoc } from 'firebase/firestore';
 import { ref, computed } from 'vue'
+import { dbOrdersRef } from '../firebase';
 
 export default function useBasket() {
 
 
 const basket = ref([]);
+const basketText = ref('Your basket is empty')
+
 function addToBasket(item, option) {
 
   const pizzaExists = basket.value.find(function (pizza) {
@@ -44,11 +48,30 @@ basket.value.forEach(function(item){
 })
 return totalCost
 })
+
+async function addNewOrder() {
+  try {
+    const order = {
+      createdAt: new Date(),
+      pizzas: {...basket.value},
+
+    };
+   await addDoc(dbOrdersRef, order)
+   basket.value = [];
+   basketText.value = 'Thank you, your order has been placed!'
+  }
+  catch (error) {
+    basketText.value = "There was an error placing your order. please try again.."
+  }
+}
+
 return {
   basket,
   addToBasket,
   increaseQuantity,
   decreaseQuantity,
   total,
+  addNewOrder,
+  basketText
 }
 }

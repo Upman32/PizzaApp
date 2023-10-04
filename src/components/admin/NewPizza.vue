@@ -1,5 +1,10 @@
 <script setup>
 import { ref } from 'vue';
+import {addDoc} from 'firebase/firestore'
+import {dbPizzasRef} from '../../firebase'
+const message = ref('');
+
+const showNewPizza = ref(true)
 const newPizza = ref({
   name: 'Eg. Margharita',
   description: 'Eg. A delicious tomato based pizza topped with mozzarella',
@@ -9,15 +14,25 @@ const newPizza = ref({
   ]
 })
 
+async function add() {
+  try {
+    await addDoc(dbPizzasRef, newPizza.value);
+    message.value = `Pizza ${newPizza.value.name} has been added` 
+  }
+  catch(e) {
+    message.value = 'There a issue with adding this pizza.....'
+  }
+}
+
 </script>
 
 <template>
-  {{ newPizza }}
   <section class="admin_section">
     <header class="admin_section_header">
     <h3>Add new pizza</h3>
+    <small class="toggleBtn" @click="showNewPizza = !showNewPizza">{{ showNewPizza ? 'hide' : 'show' }}</small>
     </header>
-      <form>
+      <form v-show="showNewPizza">
   <div class="form_group">
     <label font="">Name</label>
     <input type="text" id="name" v-model="newPizza.name"/>
@@ -49,10 +64,17 @@ const newPizza = ref({
     <input type="text" id="price2" v-model="newPizza.options[1].price"/>
   </div>
   <div class="form_group">
-    <button>
+    <button @click.prevent="add">
     Add
     </button>
+    <span class="message">{{ message }}</span>
   </div>
  </form>
   </section>
 </template>
+
+<style >
+.message {
+  margin-left:1rem;
+}
+</style>

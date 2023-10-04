@@ -104,3 +104,6 @@ input,textarea{
   padding:1rem;
   background: #faf1e2;
 }
+.toggleBtn {
+  cursor: pointer;
+}
