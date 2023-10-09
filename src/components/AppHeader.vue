@@ -1,5 +1,10 @@
+<script setup>
+import SignIn from "./SignIn.vue"
+</script>
+
 <template>
 <header>
+  <SignIn />
   <h1 class="site_title">
     <RouterLink :to="{ name: 'home'}">- Pizza Planet -</RouterLink>
   </h1>
