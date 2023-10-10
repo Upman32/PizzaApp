@@ -102,7 +102,7 @@ input,textarea{
   flex-direction: column;
   align-items: center;
   padding:1rem;
-  background: #faf1e2;
+  background: wheat;
 }
 .toggleBtn {
   cursor: pointer;

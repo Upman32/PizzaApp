@@ -23,3 +23,36 @@
 </section>
 </div>
 </template>
+
+
+
+<style>
+.about{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.intro {
+  display:flex;
+  flex-direction: column;
+}
+.info_img, .info_text_wrapper{
+flex:1;
+padding:1rem;
+text-align: center;
+align-self: center;
+}
+.more_info_wrapper{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: wheat;
+  width: 100vw;
+  padding: 1rem;
+}
+@media(min-width:900px){
+  .intro{
+    flex-direction: row;
+  }
+}
+</style>
