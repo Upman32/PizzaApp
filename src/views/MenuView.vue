@@ -1,13 +1,19 @@
 <script setup>
 import useBasket from '@/composables/useBasket'
-import usePizzas from "../composables/usePizzas"
+import usePizzas from '../composables/usePizzas'
 
-const {allPizzas} = usePizzas();
-const {basketText, addNewOrder, basket, increaseQuantity, decreaseQuantity, addToBasket, total} = useBasket();
-
-
-
-
+const { allPizzas } = usePizzas()
+const { 
+  basketText, 
+  addNewOrder, 
+  basket, 
+  increaseQuantity, 
+  decreaseQuantity, 
+  addToBasket, 
+  total,
+  signInMessage
+} =
+  useBasket()
 </script>
 <template>
   <div class="menu_wrapper">
@@ -44,9 +50,13 @@ const {basketText, addNewOrder, basket, increaseQuantity, decreaseQuantity, addT
           <tbody v-for="(item, index) in basket" :key="index">
             <tr>
               <td>
-                <button @click="decreaseQuantity(item)" class="quantity_btn" type="button">&#8722;</button>
-                <span>{{item.quantity}}</span>
-                <button @click="increaseQuantity(item)" class="quantity_btn" type="button">&#43;</button>
+                <button @click="decreaseQuantity(item)" class="quantity_btn" type="button">
+                  &#8722;
+                </button>
+                <span>{{ item.quantity }}</span>
+                <button @click="increaseQuantity(item)" class="quantity_btn" type="button">
+                  &#43;
+                </button>
               </td>
               <td>{{ item.name }} {{ item.size }}"</td>
               <td>{{ item.price * item.quantity }}</td>
@@ -54,13 +64,14 @@ const {basketText, addNewOrder, basket, increaseQuantity, decreaseQuantity, addT
           </tbody>
         </table>
         <p>Order total: {{ total }}</p>
+        <p>{{ signInMessage }}</p>
         <button @click="addNewOrder">Place order</button>
       </div>
       <div v-else>
-        <p>{{ basketText }} </p>
-      </div>
+        <p>{{ basketText }}</p>
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
