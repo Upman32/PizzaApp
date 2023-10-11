@@ -33,7 +33,7 @@ const showOrders = ref(true);
         <td>{{orderItem.name}}</td>
         <td>{{ orderItem.size }}</td>
         <td>{{orderItem.quantity}}</td>
-        <td>$ {{orderItem.price *orderItem.quantity}}</td>
+        <td>$ {{filters.formatMoney(orderItem.price *orderItem.quantity) }}</td>
       </tr>
      </template>
     </table>

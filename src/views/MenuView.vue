@@ -16,6 +16,7 @@ const {
   useBasket()
 </script>
 <template>
+  {{  }}
   <div class="menu_wrapper">
     <div class="menu">
       <h3>~ Authentic handmade pizza ~</h3>
@@ -59,11 +60,11 @@ const {
                 </button>
               </td>
               <td>{{ item.name }} {{ item.size }}"</td>
-              <td>{{ item.price * item.quantity }}</td>
+              <td>{{ filters.formatMoney(item.price * item.quantity)}}</td>
             </tr>
           </tbody>
         </table>
-        <p>Order total: {{ total }}</p>
+        <p>Order total: {{ filters.formatMoney(total) }}</p>
         <p>{{ signInMessage }}</p>
         <button @click="addNewOrder">Place order</button>
       </div>
