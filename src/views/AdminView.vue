@@ -2,21 +2,23 @@
 import NewPizza from '@/components/admin/NewPizza.vue'
 import PizzasView from '../components/admin/PizzasView.vue';
 import OrdersView from "@/components/admin/OrdersView.vue"
+import ToggleAdmin from "@/components/admin/ToggleAdmin.vue"
 import useAuth from "@/composables/useAuth"
-const {userData} = useAuth();
+const {userData, userIsAdmin} = useAuth();
 
 </script>
 <template>
-<!-- <div v-if="userData">
- -->  <p class="user_email">Welcome {{ userData?.email }}</p>
+<div v-if="userIsAdmin">
+ <p class="user_email">Welcome {{ userData?.email }}</p>
   <h3>Admin</h3>
  <NewPizza/>
  <div class="row">
  <PizzasView/>
 </div>
 <OrdersView/>
-<!-- </div> -->
-<!-- <p v-else class="warning_msg">You must be admin to view this area...</p> -->
+<ToggleAdmin/>
+</div>
+<p v-else class="warning_msg">You must be admin to view this area...</p>
 </template>
 
 <style scoped>
